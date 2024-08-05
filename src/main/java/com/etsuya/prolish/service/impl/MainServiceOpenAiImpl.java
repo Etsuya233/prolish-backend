@@ -10,8 +10,6 @@ import com.etsuya.prolish.utils.ai.ApiV3Client;
 import com.etsuya.prolish.utils.ai.OpenAiRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.OffsetDateTime;
 import java.util.List;
 
 @Service
@@ -27,7 +25,6 @@ public class MainServiceOpenAiImpl implements MainService {
 		SentenceOutput output = apiV3Client.ai(openAiRequest, SentenceOutput.class);
 		output.setTotal(output.getAccuracy().getScore() * 0.3 + output.getCompleteness() * 0.3
 				+ output.getFluency() * 0.2 + output.getNaturalness() * 0.2);
-
 		return output;
 	}
 

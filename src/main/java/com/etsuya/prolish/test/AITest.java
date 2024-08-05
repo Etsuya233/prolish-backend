@@ -1,4 +1,4 @@
-package com.etsuya.prolish;
+package com.etsuya.prolish.test;
 
 import com.alibaba.dashscope.app.Application;
 import com.alibaba.dashscope.app.ApplicationParam;
@@ -8,12 +8,8 @@ import com.alibaba.dashscope.exception.NoApiKeyException;
 import com.etsuya.prolish.config.AliyunConstant;
 import com.etsuya.prolish.utils.ai.ApiV3Client;
 import com.etsuya.prolish.utils.ai.OpenAiRequest;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 public class AITest {
 
 	@Autowired
@@ -21,7 +17,6 @@ public class AITest {
 	@Autowired
 	private ApiV3Client apiV3Client;
 
-	@Test
 	public void test1() throws NoApiKeyException, InputRequiredException {
 		ApplicationParam param = ApplicationParam.builder()
 				.appId("e0e4a026a01e4edeadbb14a84e907ed7")
@@ -36,13 +31,11 @@ public class AITest {
 				result.getRequestId(), result.getOutput().getText(), result.getOutput().getFinishReason());
 	}
 
-	@Test
 	public void test2(){
 		String apiKey = aliyunConstant.getApiKey();
 		System.out.println(apiKey);
 	}
 
-	@Test
 	public void test3(){
 		OpenAiRequest user = OpenAiRequest.make("gpt-4o-mini", OpenAiRequest.Message.of("user", "世界是什么？"));
 		String ai = apiV3Client.ai(user);
